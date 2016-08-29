@@ -76,7 +76,7 @@ var initMap = function() {
         {latLng: {lat: 35.707050846373726, lng: 139.78193438053134}, iconUrl: "arrow_br.png"},
         {latLng: {lat: 35.70615351145029, lng: 139.7817841768265}, iconUrl: "arrow_b.png"}
     ];
-    var moveMarker1 = defineMoveMarker(map, "<center>101号車<br />オリジン太郎</center>");
+    var moveMarker1 = defineMoveMarker(map, "<center>101号車<br />太郎</center>");
     eachTimeout(states1, moveMarker1, 2000, true);
 
     var states2 = [
@@ -98,7 +98,7 @@ var initMap = function() {
         {latLng: {lat: 35.703051965385285, lng: 139.76357197761538}, iconUrl: "arrow_tr.png"},
         {latLng: {lat: 35.70319136330381, lng: 139.7651062011719}, iconUrl: "arrow_r.png"}
     ];
-    var moveMarker2 = defineMoveMarker(map, "<center>104号車<br />システム太郎</center>");
+    var moveMarker2 = defineMoveMarker(map, "<center>104号車<br />次郎</center>");
     eachTimeout(states2, moveMarker2, 2000, true);
 
     if (navigator.geolocation) {

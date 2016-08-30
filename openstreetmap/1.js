@@ -49,7 +49,7 @@ var initMap = function() {
         {lat: 35.70531715135797, lng: 139.78164470195773}
     ];
     var polyline = L.polyline(latLngs, {
-        color: 'red',
+        color: 'purple',
         opacity: 0.8,
         weight: 8
     });

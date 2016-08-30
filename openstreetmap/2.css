@@ -5,3 +5,6 @@ html, body, div#map {
 body {
     margin: 0;
 }
+.drop-shadow {
+    -webkit-filter: drop-shadow(4px 4px 4px grey);
+}

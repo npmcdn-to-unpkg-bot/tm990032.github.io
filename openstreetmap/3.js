@@ -24,7 +24,8 @@ var initMap = function() {
     var marker = L.marker(latLng);
     marker.addTo(map);
     if (title) {
-        marker.bindPopup(decodeURI(title), {
+        title = '<center>' + decodeURI(title) + '</center>';
+        marker.bindPopup(title, {
             closeButton: false
         });
         marker.openPopup();

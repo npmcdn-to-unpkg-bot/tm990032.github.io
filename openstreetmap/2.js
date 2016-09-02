@@ -1,3 +1,13 @@
+var getQueryParams = function() {
+    var queryParams = {};
+    var values = location.search.substring(1).split('&');
+    _.each(values, function(value) {
+        var keyValue = value.split('=');
+        queryParams[keyValue[0]] = keyValue[1];
+    });
+    return queryParams;
+};
+
 var eachTimeout = function(iterable, func, interval, loop) {
     var fn = function(value) {
         func(value);
@@ -102,24 +112,23 @@ var initMap = function() {
     var moveMarker2 = defineMoveMarker(map, '<center>104号車<br />次郎</center>');
     eachTimeout(states2, moveMarker2, 2000, true);
 
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(
-            function(position) {
-                var latLng = {lat: position.coords.latitude, lng: position.coords.longitude};
-                var icon = L.icon({
-                    iconUrl: 'star_red.png',
-                    iconSize: [36, 36],
-                    iconAnchor: [18, 18],
-                    className: 'drop-shadow'
-                });
-                var marker = L.marker(latLng, {icon: icon});
-                marker.addTo(map);
-            },
-            function(error) {
-                alert(error.message);
-            }
-        );
-    } else {
-        alert('Not available Geolocation');
+    var queryParams = getQueryParams();
+
+    if (queryParams["currentLocation"] == "1") {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+                function(position) {
+                    var latLng = {lat: position.coords.latitude, lng: position.coords.longitude};
+                    var icon = L.icon({
+                        iconUrl: 'star_red.png',
+                        iconSize: [36, 36],
+                        iconAnchor: [18, 18],
+                        className: 'drop-shadow'
+                    });
+                    var marker = L.marker(latLng, {icon: icon});
+                    marker.addTo(map);
+                }
+            );
+        }
     }
 };

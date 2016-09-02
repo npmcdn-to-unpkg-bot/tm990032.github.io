@@ -1,3 +1,13 @@
+var getQueryParams = function() {
+    var queryParams = {};
+    var values = location.search.substring(1).split('&');
+    _.each(values, function(value) {
+        var keyValue = value.split('=');
+        queryParams[keyValue[0]] = keyValue[1];
+    });
+    return queryParams;
+};
+
 var initMap = function() {
     var map = L.map('map');
 
@@ -57,24 +67,23 @@ var initMap = function() {
 
     map.setView({lat: 35.70385350008514, lng: 139.7717151641846}, 16);
 
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(
-            function(position) {
-                var latLng = {lat: position.coords.latitude, lng: position.coords.longitude};
-                var icon = L.icon({
-                    iconUrl: 'star_red.png',
-                    iconSize: [36, 36],
-                    iconAnchor: [18, 18],
-                    className: 'drop-shadow'
-                });
-                var marker = L.marker(latLng, {icon: icon});
-                marker.addTo(map);
-            },
-            function(error) {
-                alert(error.message);
-            }
-        );
-    } else {
-        alert('Not available Geolocation');
+    var queryParams = getQueryParams();
+
+    if (queryParams["currentLocation"] == "1") {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+                function(position) {
+                    var latLng = {lat: position.coords.latitude, lng: position.coords.longitude};
+                    var icon = L.icon({
+                        iconUrl: 'star_red.png',
+                        iconSize: [36, 36],
+                        iconAnchor: [18, 18],
+                        className: 'drop-shadow'
+                    });
+                    var marker = L.marker(latLng, {icon: icon});
+                    marker.addTo(map);
+                }
+            );
+        }
     }
 };

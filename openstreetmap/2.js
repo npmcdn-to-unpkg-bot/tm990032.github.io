@@ -1,13 +1,3 @@
-var getQueryParams = function() {
-    var queryParams = {};
-    var values = location.search.substring(1).split('&');
-    _.each(values, function(value) {
-        var keyValue = value.split('=');
-        queryParams[keyValue[0]] = keyValue[1];
-    });
-    return queryParams;
-};
-
 var eachTimeout = function(iterable, func, interval, loop) {
     var fn = function(value) {
         func(value);
@@ -119,13 +109,5 @@ var initMap = function() {
                 marker.addTo(map);
             }
         );
-    }
-
-    var queryParams = getQueryParams();
-    var lat = queryParams["lat"];
-    var lng = queryParams["lng"];
-    if (lat && lng) {
-        var marker = L.marker({lat: lat, lng: lng});
-        marker.addTo(map);
     }
 };

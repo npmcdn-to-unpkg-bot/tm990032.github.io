@@ -114,7 +114,7 @@ var initMap = function() {
 
     var queryParams = getQueryParams();
 
-    if (queryParams["currentLocation"] == "1") {
+    // if (queryParams["currentLocation"] == "1") {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(
                 function(position) {
@@ -130,5 +130,5 @@ var initMap = function() {
                 }
             );
         }
-    }
+    // }
 };

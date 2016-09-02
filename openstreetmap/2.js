@@ -112,23 +112,20 @@ var initMap = function() {
     var moveMarker2 = defineMoveMarker(map, '<center>104号車<br />次郎</center>');
     eachTimeout(states2, moveMarker2, 2000, true);
 
-    var queryParams = getQueryParams();
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+            function(position) {
+                var marker = L.marker({lat: position.coords.latitude, lng: position.coords.longitude});
+                marker.addTo(map);
+            }
+        );
+    }
 
-    // if (queryParams["currentLocation"] == "1") {
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(
-                function(position) {
-                    var latLng = {lat: position.coords.latitude, lng: position.coords.longitude};
-                    var icon = L.icon({
-                        iconUrl: 'star_red.png',
-                        iconSize: [36, 36],
-                        iconAnchor: [18, 18],
-                        className: 'drop-shadow'
-                    });
-                    var marker = L.marker(latLng, {icon: icon});
-                    marker.addTo(map);
-                }
-            );
-        }
-    // }
+    var queryParams = getQueryParams();
+    var lat = queryParams["lat"];
+    var lng = queryParams["lng"];
+    if (lat && lng) {
+        var marker = L.marker({lat: lat, lng: lng});
+        marker.addTo(map);
+    }
 };

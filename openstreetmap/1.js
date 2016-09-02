@@ -2,7 +2,7 @@ var initMap = function() {
     var map = L.map('map');
 
     L.tileLayer('http://{s}.tile.thunderforest.com/transport/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+        attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap contributors</a>. Tiles courtesy of <a href="http://www.thunderforest.com/" target="_blank">Andy Allan</a>'
     }).addTo(map);
 
     var states = [
